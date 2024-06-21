@@ -1,0 +1,57 @@
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(5, [col] 100px);
+  grid-template-rows: repeat(3, [row] auto);
+  background-color: #fff;
+  color: #444;
+}
+
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 150%;
+}
+
+.header {
+  grid-column: col / span 5;
+  grid-row: row;
+}
+
+.icon {
+  grid-column: col 1;
+  grid-row: 1;
+}
+.taskName {
+  grid-column: col 2 / span 4;
+  grid-row: row 2;
+}
+
+.display {
+  grid-column: col/ span 4;
+  grid-row: row 3;
+}
+
+.period {
+  grid-column: col / span 4;
+  grid-row: row 4;
+}
+
+.grid-container1 {
+  display: grid;
+  grid-template-areas: "menu main main main main main main main main main main main main main main main main main main main main main main main main";
+  border-radius: 20px;
+  background: lightgrey;
+  padding: 8px;
+}
+
+.item21 {
+  grid-area: menu;
+  text-align: center;
+  padding: 10px;
+}
+.item31 {
+  grid-area: main;
+  padding: 10px;
+}
