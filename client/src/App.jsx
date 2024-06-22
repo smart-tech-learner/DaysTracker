@@ -40,10 +40,6 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: "history",
-        element: <History />,
-      },
-      {
         path: "dashboard",
         element: <DashboardLayout />,
         loader: dashboardLayoutLoader,
@@ -61,6 +57,10 @@ const router = createBrowserRouter([
             path: "taskDetails/:id",
             element: <TaskDetails />,
             loader: taskDetailsLoader,
+          },
+          {
+            path: "history",
+            element: <History />,
           },
         ],
       },

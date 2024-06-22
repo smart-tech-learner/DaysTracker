@@ -61,7 +61,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/history">
+                <Link className="nav-link" to="/dashboard/history">
                   History
                 </Link>
               </li>
