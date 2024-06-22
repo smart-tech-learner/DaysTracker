@@ -34,7 +34,7 @@ app.use("*", (request, response) => {
 //ERROR MIDDLEWARE
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 7600;
+const port = process.env.PORT || 10000;
 try {
   await mongoose.connect(process.env.MONGO_URL);
   console.log("MongoDB Connect String ::: ", process.env.NODE_ENV);
