@@ -13,19 +13,13 @@ import TaskDisplayCard from "../Components/TaskDisplayCard";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { createContext } from "react";
-import History from "../Components/History";
 import { useUserContext } from "../Components/DashboardLayout";
-import { convertDate } from "../Utils/Utilities";
 
 export const addedItemsList = [];
 
 export const loader = async ({ request }) => {
   try {
     const { data } = await axios.get("/api/v1/daysTracker/tasks");
-    console.log(data.tasks);
-    const readableDate = convertDate(data.tasks[0].startDate);
-    data.tasks[0].startDate = readableDate;
-    console.log(readableDate);
     return data.tasks;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
@@ -71,7 +65,7 @@ const Dashboard = () => {
         </div>
         <br></br>
 
-        {allTasks && allTasks.length == 0 ? (
+        {allTasks.length == 0 ? (
           <div
             style={{
               display: "flex",

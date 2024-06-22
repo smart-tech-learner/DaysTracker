@@ -4,8 +4,10 @@ import logo from "/icons/logo.png";
 import avatar_m from "/icons/avatar_m.png";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useUserContext } from "./DashboardLayout";
 
 const NavBar = () => {
+  const { user } = useUserContext();
   const navigate = useNavigate();
   const logoutUser = async () => {
     try {
@@ -80,7 +82,7 @@ const NavBar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    Prasana Kumar
+                    {user.user.firstName}
                   </a>
                   <ul className="dropdown-menu">
                     <li>
