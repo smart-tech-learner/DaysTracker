@@ -3,7 +3,6 @@ import React, { createContext, useContext } from "react";
 import { Outlet, redirect, useLoaderData } from "react-router-dom";
 
 export const loader = async () => {
-  console.log("in layout loader");
   try {
     const { data } = await axios.get("/api/v1/daysTracker/users/currentUser");
     return data;
@@ -15,7 +14,6 @@ export const loader = async () => {
 const UserContext = createContext();
 const DashboardLayout = () => {
   const user = useLoaderData();
-  console.log("user in layout:::", user);
 
   return (
     <UserContext.Provider value={{ user }}>

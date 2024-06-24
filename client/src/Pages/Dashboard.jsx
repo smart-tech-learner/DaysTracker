@@ -34,7 +34,6 @@ const Dashboard = () => {
   const [displaySearch, setDisplaySearch] = useState(false);
 
   const { user } = useUserContext();
-  console.log("user data in dashboard::: " + user);
 
   const closeSearch = () => {
     setDisplaySearch(false);

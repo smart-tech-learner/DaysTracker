@@ -28,8 +28,6 @@ export const loader = async ({ params }) => {
     const taskId = await params.id;
     const { data } = await axios.get(`/api/v1/daysTracker/tasks/${taskId}`);
 
-    console.log(data.details);
-
     if (data.details.startDate) {
       const readableStartDate = convertDate(data.details.startDate);
       data.details.startDate = readableStartDate;
@@ -132,7 +130,6 @@ const TaskDetails = () => {
         icon: taskDetails.icon,
       };
 
-      console.log(updatedTask);
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task completed successfully!");
@@ -163,7 +160,6 @@ const TaskDetails = () => {
         timePeriod: taskDetails.timePeriod,
       };
 
-      console.log(updatedTask);
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task tracking stopped successfully!");
@@ -293,7 +289,6 @@ const TaskDetails = () => {
 
   const onChangeSubTask = (event) => {
     const selectedSubTaskId = event.target.value;
-    console.log(selectedSubTaskId);
     if (selectedSubTaskId) {
       const selSubTaskIndex = SubTasksList().findIndex(
         (task) => task.id === parseInt(selectedSubTaskId)
@@ -301,7 +296,6 @@ const TaskDetails = () => {
 
       const selectedSubTaskName = Object.values(SubTasksList())[selSubTaskIndex]
         .name;
-      console.log(selectedSubTaskName);
       setTaskDetails({
         ...taskDetails,
         subTaskId: selectedSubTaskId,
@@ -329,7 +323,6 @@ const TaskDetails = () => {
         icon: taskDetails.icon,
       };
 
-      console.log(updatedTask);
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task updated successfully!");

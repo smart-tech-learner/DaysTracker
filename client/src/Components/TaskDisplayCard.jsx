@@ -20,9 +20,7 @@ const TaskDisplayCard = (props) => {
   const onClickDeleteTask = (taskId) => {
     let confirmationText = `Are you sure you want to delete the task?`;
     if (confirm(confirmationText) == true) {
-      console.log("Task Id::: ", taskId);
       const taskIndex = addedItemsList.findIndex((item) => item.id === taskId);
-      console.log("Index::", taskIndex);
 
       addedItemsList.splice(taskIndex, 1);
       toast.info("Task deleted successfully!");

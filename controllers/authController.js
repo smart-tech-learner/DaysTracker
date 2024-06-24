@@ -7,7 +7,6 @@ import { StatusCodes } from "http-status-codes";
 
 export const register = async (request, response) => {
   const hashedPassword = await hashPassword(request.body.password);
-  console.log(hashedPassword);
   request.body.password = hashedPassword;
   const newUser = await UserModel.create(request.body);
   return response.status(StatusCodes.CREATED).json({ msg: newUser });

@@ -40,7 +40,6 @@ const AddTask = (props) => {
 
   const onSelectIcon = (emojiObject) => {
     setNewTaskDetails({ ...newTaskDetails, icon: emojiObject.imageUrl });
-    console.log(emojiObject.imageUrl);
     setShowEmojiPicker(!showEmojiPicker);
   };
 
@@ -180,7 +179,6 @@ const AddTask = (props) => {
         status: "in-progress",
         icon: newTaskDetails.icon,
       };
-      console.log(newTask);
 
       try {
         await axios.post("/api/v1/daysTracker/tasks", newTask);

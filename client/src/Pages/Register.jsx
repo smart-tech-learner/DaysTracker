@@ -9,7 +9,6 @@ import axios from "axios";
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  console.log(data);
   try {
     await axios.post("/api/v1/daysTracker/auth/register", data);
     toast.success("Registration successful!");

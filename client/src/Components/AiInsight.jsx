@@ -29,14 +29,11 @@ const AiInsight = (props) => {
     // setResponseList([...responseList, searchRequest]);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    console.log("Prompt::: ", message);
     const result = await model.generateContent(message);
     const response = await result.response;
     const text = response.text();
-    // console.log(text);
     const searchResponse = { id: nanoid(5), by: "bot", resp: text };
     responseList.push(searchResponse);
-    // setResponseList([...responseList, searchResponse]);
     setSerachText("");
   };
 
