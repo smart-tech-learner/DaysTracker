@@ -3,7 +3,6 @@ import add_icon from "/icons/add_icon.png";
 import search_icon from "/icons/search_icon.png";
 import { Link, useLoaderData } from "react-router-dom";
 import NavBar from "../Components/NavBar";
-import no_tasks_image from "/images/no_tasks.jpg";
 import bot from "/icons/bot.png";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -13,14 +12,16 @@ import TaskDisplayCard from "../Components/TaskDisplayCard";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { createContext } from "react";
-import { useUserContext } from "../Components/DashboardLayout";
+import SectionContainer from "../Components/SectionContainer";
+import TasksDisplayContainer from "../Components/TasksDisplayContainer";
+import no_tasks_image from "/images/no_tasks.jpg";
 
 export const addedItemsList = [];
 
 export const loader = async ({ request }) => {
   try {
     const { data } = await axios.get("/api/v1/daysTracker/tasks");
-    return data.tasks;
+    return data;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;
@@ -31,16 +32,29 @@ const AllTasksContext = createContext();
 
 const Dashboard = () => {
   const allTasks = useLoaderData();
-  const [displaySearch, setDisplaySearch] = useState(false);
 
-  const { user } = useUserContext();
+  const [filteredTask, setFilteredTask] = useState(
+    allTasks.tasks.filter((task) => task.status === "in-progress")
+  );
+
+  const [displaySearch, setDisplaySearch] = useState(false);
 
   const closeSearch = () => {
     setDisplaySearch(false);
   };
 
+  const selectedStatusToFilter = (status) => {
+    let tasks = [];
+    if (status === "total") {
+      tasks = allTasks.tasks;
+    } else {
+      tasks = allTasks.tasks.filter((task) => task.status === status);
+    }
+    setFilteredTask([...tasks]);
+  };
+
   return (
-    <AllTasksContext.Provider value={allTasks}>
+    <AllTasksContext.Provider value={{ allTasks }}>
       <NavBar />
       <div
         className="container"
@@ -60,35 +74,12 @@ const Dashboard = () => {
               <img src={add_icon} alt="task" />
             </Link>
           </div>
-          <h2>Today</h2>
+          <h2>Dashboard</h2>
         </div>
         <br></br>
-
-        {allTasks.length == 0 ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              height: "350px",
-            }}
-          >
-            <img src={no_tasks_image} alt="no_task" />
-          </div>
-        ) : (
-          <div>
-            {displaySearch && <Search closeSearch={closeSearch} />}
-            {allTasks &&
-              allTasks.map((item) => {
-                return (
-                  <TaskDisplayCard
-                    itemDetails={item}
-                    key={item.id}
-                    viewAs="dashboard"
-                  />
-                );
-              })}
-          </div>
-        )}
+        <SectionContainer selectedStatusToFilter={selectedStatusToFilter} />
+        <hr></hr>
+        <TasksDisplayContainer filteredTaskByStatus={filteredTask} />
         <div
           style={{
             position: "fixed",

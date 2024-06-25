@@ -17,7 +17,7 @@ const DashboardLayout = () => {
 
   return (
     <UserContext.Provider value={{ user }}>
-      <Outlet context={{ user }} />
+      <Outlet />
     </UserContext.Provider>
   );
 };

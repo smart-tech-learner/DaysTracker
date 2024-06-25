@@ -5,8 +5,11 @@ import { nanoid } from "nanoid";
 import gemini_icon from "/icons/gemini-icon.png";
 import send_icon from "/icons/send_icon.png";
 import user_icon from "/icons/user_icon.png";
+import { useAllTasksContext } from "../Pages/Dashboard";
 
 const AiInsight = (props) => {
+  const tasks = useAllTasksContext();
+  console.log(tasks);
   const promptText = props.subTask;
   const [responseList, setResponseList] = useState([
     {

@@ -62,11 +62,11 @@ const router = createBrowserRouter([
             path: "history",
             element: <History />,
           },
+          {
+            path: "statistics",
+            element: <Statistics />,
+          },
         ],
-      },
-      {
-        path: "statistics",
-        element: <Statistics />,
       },
     ],
   },

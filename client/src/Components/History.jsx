@@ -1,10 +1,13 @@
 import React from "react";
 import NavBar from "./NavBar";
-import { addedItemsList } from "../Pages/Dashboard";
+import { addedItemsList, useAllTasksContext } from "../Pages/Dashboard";
 import TaskDisplayCard from "./TaskDisplayCard";
 import no_tasks_image from "/images/no_tasks.jpg";
+import { useUserContext } from "./DashboardLayout";
 
 const History = (props) => {
+  const { tasks } = useAllTasksContext();
+  console.log(tasks);
   const inactiveTasks = addedItemsList.filter(
     (task) => task.status === "completed" || task.status === "stopped"
   );

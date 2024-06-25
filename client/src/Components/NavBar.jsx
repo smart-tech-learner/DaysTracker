@@ -60,13 +60,13 @@ const NavBar = () => {
                   Dashboard
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/dashboard/history">
                   History
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
-                <Link className="nav-link" to="/statistics">
+                <Link className="nav-link" to="statistics">
                   Statistics
                 </Link>
               </li>
@@ -85,11 +85,11 @@ const NavBar = () => {
                     {user.user.firstName}
                   </a>
                   <ul className="dropdown-menu">
-                    <li>
+                    {/* <li>
                       <Link className="dropdown-item" to="/settings">
                         Settings
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link className="dropdown-item" onClick={logoutUser}>
                         Logout

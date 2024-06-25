@@ -52,20 +52,6 @@ const TaskDisplayCard = (props) => {
       className="container"
       onClick={props.viewAs === "dashboard" ? onClickTask : ""}
     >
-      {props.viewAs === "history" && (
-        <img
-          src={delete_icon}
-          onClick={() => onClickDeleteTask(id)}
-          alt=""
-          height="25"
-          style={{
-            marginLeft: "-35px",
-            marginTop: "7px",
-            float: "right",
-            marginRight: "5px",
-          }}
-        />
-      )}
       <div
         className="grid-container"
         style={
@@ -95,11 +81,11 @@ const TaskDisplayCard = (props) => {
         </div>
         <div className="item3">
           {title !== "" ? (
-            <h5 className="card-title">{title}</h5>
+            <h6 className="card-title">{title}</h6>
           ) : (
-            <h5 className="card-title">
+            <h6 className="card-title">
               {taskName} {subTaskName}
-            </h5>
+            </h6>
           )}
           <h6 className="card-subtitle mb-2 text-body-secondary">
             {status === "in-progress" || status === ""
@@ -110,6 +96,7 @@ const TaskDisplayCard = (props) => {
               ? `Created on: ${startDateAttr}. Target date: ${endDateAttr}`
               : `Tracked for ${timePeriod} since ${startDateAttr}.`}
           </h6>
+
           <div style={{ display: "flex" }}>
             {status === "in-progress" || status === "" ? (
               ""

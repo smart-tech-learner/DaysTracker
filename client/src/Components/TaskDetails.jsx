@@ -101,14 +101,17 @@ const TaskDetails = () => {
       : taskDetails.endDate
   );
 
-  const onClickDeleteTask = () => {
-    let confirmationText = `Are you sure you want to delete the task ${id}? `;
+  const onClickDeleteTask = async () => {
+    let confirmationText = `Are you sure you want to delete the task? `;
     if (confirm(confirmationText) == true) {
-      const taskIndex = addedItemsList.findIndex((item) => item.id === id);
-
-      addedItemsList.splice(taskIndex, 1);
-      toast.info("Task deleted successfully!");
-      navigate("/dashboard");
+      try {
+        await axios.delete(`/api/v1/daysTracker/tasks/${_id}`);
+        toast.info("Task deleted successfully!");
+        navigate("/dashboard");
+      } catch (error) {
+        toast.error(error?.ressponse?.data?.msg);
+        return error;
+      }
     }
   };
 
