@@ -51,5 +51,6 @@ try {
     console.log(`Server is running on PORT ${port}`);
   });
 } catch (error) {
+  console.log("error::: ", error);
   process.exit(1);
 }
