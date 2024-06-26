@@ -39,36 +39,36 @@ const SectionContainer = (props) => {
         className="box_elements"
         onClick={() => onSelectedStatusForFilter("in-progress")}
       >
-        <img src={task_in_progress} alt="in-progress" height="30" />
-        <h5>{getInProgressTasksCount()}</h5>
-        <h6>In progess</h6>
+        <img src={task_in_progress} alt="in-progress" height="20" />
+        <h5 className="count">{getInProgressTasksCount()}</h5>
+        <h6 className="status">In progess</h6>
       </div>
       &nbsp;&nbsp;
       <div
         className="box_elements"
         onClick={() => onSelectedStatusForFilter("completed")}
       >
-        <img src={task_completed} alt="completed" height="30" />
-        <h5>{getInCompletedTasksCount()}</h5>
-        <h6>Completed</h6>
+        <img src={task_completed} alt="completed" height="20" />
+        <h5 className="count">{getInCompletedTasksCount()}</h5>
+        <h6 className="status">Completed</h6>
       </div>
       &nbsp;&nbsp;
       <div
         className="box_elements"
         onClick={() => onSelectedStatusForFilter("stopped")}
       >
-        <img src={task_stopped} alt="stopped" height="30" />
-        <h5>{getStoppedTasksCount()}</h5>
-        <h6>Stopped</h6>
+        <img src={task_stopped} alt="stopped" height="20" />
+        <h5 className="count">{getStoppedTasksCount()}</h5>
+        <h6 className="status">Stopped</h6>
       </div>
       &nbsp;&nbsp;
       <div
         className="box_elements"
         onClick={() => onSelectedStatusForFilter("total")}
       >
-        <img src={task_total} alt="total" height="30" />
-        <h5>{data.allTasks.tasks.length}</h5>
-        <h6>Total Tasks</h6>
+        <img src={task_total} alt="total" height="20" />
+        <h5 className="count">{data.allTasks.tasks.length}</h5>
+        <h6 className="status">Total Tasks</h6>
       </div>
     </div>
   );

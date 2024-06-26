@@ -18,7 +18,6 @@ const TasksDisplayContainer = (props) => {
         </div>
       ) : (
         <div>
-          {/* {displaySearch && <Search closeSearch={closeSearch} />} */}
           {props.filteredTaskByStatus &&
             props.filteredTaskByStatus.map((item) => {
               return (

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink, redirect, useNavigate } from "react-router-dom";
 import logo from "/icons/logo.png";
+import track_icon from "/icons/track_icon.png";
 import avatar_m from "/icons/avatar_m.png";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -56,19 +57,10 @@ const NavBar = () => {
           <div className="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
             <ul className="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
               <li className="nav-item">
-                <Link className="nav-link" to="/dashboard">
-                  Dashboard
-                </Link>
-              </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/dashboard/history">
-                  History
-                </Link>
-              </li> */}
-              <li className="nav-item">
-                <Link className="nav-link" to="statistics">
-                  Statistics
-                </Link>
+                <div style={{ display: "flex" }}>
+                  <img src={track_icon} alt="track" height="30" />
+                  <h5 style={{ fontFamily: "cursive" }}>Track on the GO....</h5>
+                </div>
               </li>
             </ul>
             <div style={{ display: "flex" }}>
@@ -99,52 +91,10 @@ const NavBar = () => {
                 </li>
               </ul>
             </div>
-            {/* <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-              <NavLink className="text-white" to="/login">
-                Login
-              </NavLink>
-              <button
-                className="text-white text-decoration-none px-3 py-1 rounded-4"
-                style={{ backgroundColor: "green" }}
-              >
-                <NavLink className="text-white" to="/register">
-                  Register
-                </NavLink>
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
     </nav>
-    // <nav className="navbar navbar-expand-lg bg-body-tertiary">
-    //   <div className="collapse navbar-collapse" id="navbarNavDropdown">
-    //     <ul className="navbar-nav">
-    //       <li className="nav-item dropdown">
-    //         <a
-    //           className="nav-link dropdown-toggle"
-    //           href="#"
-    //           role="button"
-    //           data-bs-toggle="dropdown"
-    //           aria-expanded="false"
-    //         >
-    //           Prasana Kumar
-    //         </a>
-    //         <ul className="dropdown-menu">
-    //           <li>
-    //             <a className="dropdown-item" href="#">
-    //               Settings
-    //             </a>
-    //           </li>
-    //           <li>
-    //             <a className="dropdown-item" href="#">
-    //               Logout
-    //             </a>
-    //           </li>
-    //         </ul>
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </nav>
   );
 };
 

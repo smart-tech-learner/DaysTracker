@@ -1,20 +1,16 @@
 import React, { useContext, useState } from "react";
 import add_icon from "/icons/add_icon.png";
-import search_icon from "/icons/search_icon.png";
 import { Link, useLoaderData } from "react-router-dom";
 import NavBar from "../Components/NavBar";
 import bot from "/icons/bot.png";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import AiInsight from "../Components/AiInsight";
-import Search from "../Components/Search";
-import TaskDisplayCard from "../Components/TaskDisplayCard";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { createContext } from "react";
 import SectionContainer from "../Components/SectionContainer";
 import TasksDisplayContainer from "../Components/TasksDisplayContainer";
-import no_tasks_image from "/images/no_tasks.jpg";
 
 export const addedItemsList = [];
 
@@ -37,12 +33,6 @@ const Dashboard = () => {
     allTasks.tasks.filter((task) => task.status === "in-progress")
   );
 
-  const [displaySearch, setDisplaySearch] = useState(false);
-
-  const closeSearch = () => {
-    setDisplaySearch(false);
-  };
-
   const selectedStatusToFilter = (status) => {
     let tasks = [];
     if (status === "total") {
@@ -62,14 +52,6 @@ const Dashboard = () => {
       >
         <div>
           <div style={{ float: "right" }}>
-            <Link>
-              <img
-                src={search_icon}
-                alt="task"
-                onClick={() => setDisplaySearch(!displaySearch)}
-              />
-            </Link>
-            &nbsp; &nbsp;
             <Link to="addTask">
               <img src={add_icon} alt="task" />
             </Link>

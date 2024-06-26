@@ -8,6 +8,8 @@ import user_icon from "/icons/user_icon.png";
 import { useAllTasksContext } from "../Pages/Dashboard";
 
 const AiInsight = (props) => {
+  const key = process.env.REACT_APP_GOOGLE_API_KEY;
+  console.log("key::: ", key);
   const tasks = useAllTasksContext();
   console.log(tasks);
   const promptText = props.subTask;
@@ -19,9 +21,7 @@ const AiInsight = (props) => {
     },
   ]);
   const [searchText, setSerachText] = useState("");
-  const genAI = new GoogleGenerativeAI(
-    "AIzaSyAxs6Ido1gpG46RzsSv2X6LsMOVFuZcuHM"
-  );
+  const genAI = new GoogleGenerativeAI("process.env.REACT_APP_GOOGLE_API_KEY");
 
   const welcomeNote = () => {
     aiRun(
