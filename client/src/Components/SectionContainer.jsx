@@ -68,7 +68,7 @@ const SectionContainer = (props) => {
       >
         <img src={task_total} alt="total" height="30" />
         <h5>{data.allTasks.tasks.length}</h5>
-        <h6>Total</h6>
+        <h6>Total Tasks</h6>
       </div>
     </div>
   );

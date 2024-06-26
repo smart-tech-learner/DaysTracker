@@ -23,7 +23,7 @@ const DaysTrackerTaskSchema = new mongoose.Schema(
     },
     createdBy: {
       type: mongoose.Types.ObjectId,
-      ref: "User",
+      ref: "Users",
     },
   },
   {
@@ -31,4 +31,4 @@ const DaysTrackerTaskSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("DaysTrackerTask", DaysTrackerTaskSchema);
+export default mongoose.model("DaysTrackerTasks", DaysTrackerTaskSchema);

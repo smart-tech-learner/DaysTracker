@@ -24,7 +24,7 @@ const NavBar = () => {
         <img src={logo} alt="logo" style={{ height: "30px" }} href="/" />
         &nbsp;
         <NavLink className="navbar-brand" to="/">
-          Days Tracker
+          Infinity-Days Tracker
         </NavLink>
         <button
           className="navbar-toggler shadow-none border-0"
@@ -44,7 +44,7 @@ const NavBar = () => {
           {/* Sidebar header */}
           <div className="offcanvas-header text-white border-bottom">
             <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">
-              Days Tracker
+              Infinity-Days Tracker
             </h5>
             <button
               type="button"
