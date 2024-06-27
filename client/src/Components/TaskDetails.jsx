@@ -16,7 +16,6 @@ import {
 import { Link, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import FormLabel from "./FormLabel";
-import FormInput from "./FormInput";
 import TasksList from "../Constants/TasksList";
 import SubTasksList from "../Constants/SubTasksList";
 import axios from "axios";
@@ -54,6 +53,7 @@ const TaskDetails = () => {
     title,
     startDate,
     endDate,
+    completedDate,
     status,
     trackOption,
   } = useLoaderData();
@@ -78,6 +78,7 @@ const TaskDetails = () => {
     trackOption: trackOption,
     startDate: startDate,
     endDate: endDate,
+    completedDate: completedDate,
     status: status,
     timePeriod:
       trackOption === "time_passed"
@@ -130,7 +131,8 @@ const TaskDetails = () => {
         title: taskDetails.title,
         trackOption: taskDetails.trackOption,
         startDate: taskDetails.startDate,
-        endDate: todayDate,
+        endDate: taskDetails.endDate,
+        completedDate: todayDate,
         status: "completed",
         icon: taskDetails.icon,
       };

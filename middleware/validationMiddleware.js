@@ -100,3 +100,15 @@ export const validateLoginUserInput = withValidationErrors([
     .withMessage("invalid email format"),
   body("password").notEmpty().withMessage("password is required"),
 ]);
+
+export const validateUserPassword = withValidationErrors([
+  body("oldPassword").notEmpty().withMessage("old password is required"),
+  body("newPassword")
+    .notEmpty()
+    .withMessage("new password is required")
+    .isLength({ min: "5" })
+    .withMessage("password needs to be more than 5 chars long"),
+  body("confirmNewPassword")
+    .notEmpty()
+    .withMessage("confirm new password is required"),
+]);

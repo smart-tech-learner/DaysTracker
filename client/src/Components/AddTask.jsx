@@ -29,6 +29,7 @@ const AddTask = (props) => {
     trackOption: "",
     startDate: "",
     endDate: "",
+    completedDate: "",
     timePeriod: "",
     icon: props.selectedSubTask.icon,
   });
@@ -174,6 +175,7 @@ const AddTask = (props) => {
           newTaskDetails.trackOption === "time_left"
             ? newTaskDetails.endDate
             : "",
+        completedDate: newTaskDetails.completedDate,
         status: "in-progress",
         icon: newTaskDetails.icon,
       };

@@ -15,6 +15,7 @@ const DaysTrackerTaskSchema = new mongoose.Schema(
     icon: String,
     startDate: Date,
     endDate: Date,
+    completedDate: Date,
     timePeriod: String,
     status: {
       type: String,

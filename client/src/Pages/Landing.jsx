@@ -15,7 +15,7 @@ const Landing = () => {
             >
               The best <br />
               <span style={{ color: "hsl(218, 81%, 75%)" }}>
-                simple day counter
+                simple day tracker/counter
               </span>
             </h1>
             <p

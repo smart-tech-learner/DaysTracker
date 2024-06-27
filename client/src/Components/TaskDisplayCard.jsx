@@ -3,11 +3,13 @@ import "../css/TaskDisplayCard.css";
 import logo from "/icons/logo.png";
 import completed_icon from "/icons/completed_icon.png";
 import stopped_icon from "/icons/stopped_icon.png";
-import delete_icon from "/icons/delete_icon.png";
 
 import {
   computeYearsMonthsDaysForTimeLeft,
   computeYearsMonthsDaysForTimePassed,
+  currentDate,
+  isSelDateGtThanCurrDate,
+  isSelDateLsThanCurrDate,
 } from "../Utils/Utilities";
 import { useNavigate } from "react-router-dom";
 import day from "dayjs";
@@ -36,12 +38,14 @@ const TaskDisplayCard = (props) => {
     trackOption,
     startDate,
     endDate,
+    completedDate,
     status,
     icon,
     timePeriod,
   } = props.itemDetails;
   const startDateAttr = day(startDate).format("MMM DD, YYYY");
   const endDateAttr = day(endDate).format("MMM DD, YYYY");
+  const completionDateAttr = day(completedDate).format("MMM DD, YYYY");
 
   const onClickTask = () => {
     navigate(`taskDetails/${_id}`);
@@ -85,17 +89,17 @@ const TaskDisplayCard = (props) => {
             </h6>
           )}
           <h6 className="card-subtitle mb-2 text-body-secondary">
-            {status === "in-progress" || status === ""
+            {status === "in-progress"
               ? trackOption === "time_passed"
                 ? `Started on ${startDateAttr}.`
                 : `To be completed on ${endDateAttr}`
               : status === "completed" || status === "completed"
-              ? `Created on: ${startDateAttr}. Target date: ${endDateAttr}`
+              ? `Created on: ${startDateAttr}. Due date: ${endDateAttr}`
               : `Tracked for ${timePeriod} since ${startDateAttr}.`}
           </h6>
 
           <div style={{ display: "flex" }}>
-            {status === "in-progress" || status === "" ? (
+            {status === "in-progress" ? (
               ""
             ) : status === "completed" ? (
               <img
@@ -113,16 +117,30 @@ const TaskDisplayCard = (props) => {
               />
             )}
             <h6 className="card-subtitle mb-2 text-body-secondary">
-              {status === "in-progress" || status === ""
+              {status === "in-progress"
                 ? trackOption === "time_passed"
                   ? `${computeYearsMonthsDaysForTimePassed(
                       startDate
                     )} since started`
-                  : `${computeYearsMonthsDaysForTimeLeft(
+                  : isSelDateGtThanCurrDate(endDate)
+                  ? `${computeYearsMonthsDaysForTimeLeft(
                       endDate
                     )} left for completion`
+                  : `Overdue for ${computeYearsMonthsDaysForTimePassed(
+                      endDate
+                    )} since ${endDateAttr} till today.`
                 : status === "completed"
-                ? `Completed on ${endDateAttr}`
+                ? completedDate > endDate
+                  ? `Completed on ${completionDateAttr} (overdued for ${parseInt(
+                      (new Date(completedDate) - new Date(endDate)) /
+                        (1000 * 60 * 60 * 24),
+                      10
+                    )} days).`
+                  : `Completed on ${completionDateAttr} (${parseInt(
+                      (new Date(endDate) - new Date(completedDate)) /
+                        (1000 * 60 * 60 * 24),
+                      10
+                    )} days prior to completion date.)`
                 : `Stopped on ${endDateAttr}.`}
             </h6>
           </div>
