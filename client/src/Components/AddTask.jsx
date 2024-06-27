@@ -14,11 +14,10 @@ import {
   isSelDateLsThanCurrDate,
 } from "../Utils/Utilities";
 import { Link, useNavigate } from "react-router-dom";
-import { addedItemsList } from "../Pages/Dashboard";
+import { addedItemsList } from "../Pages/Tasks";
 import NavBar from "./NavBar";
 import FormInput from "./FormInput";
 import FormLabel from "./FormLabel";
-import AiInsight from "./AiInsight";
 import axios from "axios";
 
 const AddTask = (props) => {
@@ -33,7 +32,6 @@ const AddTask = (props) => {
     timePeriod: "",
     icon: props.selectedSubTask.icon,
   });
-  const [showAiInsight, setShowAiInsight] = useState(false);
   const [dateLabel, setDateLabel] = useState("Since");
   const [disableDateField, setDisableDateField] = useState(true);
   const [dateValue, setDateValue] = useState();
@@ -183,7 +181,7 @@ const AddTask = (props) => {
       try {
         await axios.post("/api/v1/daysTracker/tasks", newTask);
         toast.success("Task created successfully!");
-        navigate("/dashboard");
+        navigate("/tasks");
       } catch (error) {
         toast.error(error?.response?.data?.msg);
         return error;
@@ -214,7 +212,7 @@ const AddTask = (props) => {
                       Create
                     </button>
                     &nbsp;
-                    <Link to="/dashboard" className="btn btn-danger">
+                    <Link to="/tasks" className="btn btn-danger">
                       Cancel
                     </Link>
                   </div>
@@ -335,38 +333,10 @@ const AddTask = (props) => {
                     </div>
                   )}
                 </div>
-                <div
-                  className="form-check form-switch"
-                  style={{ paddingTop: "12px" }}
-                >
-                  <FormLabel
-                    name="insight"
-                    labelText="Get Insight (Powered by Gemini AI)"
-                  />
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="insight"
-                    onChange={() => setShowAiInsight(!showAiInsight)}
-                  />
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <br></br>
-        {showAiInsight && (
-          <div
-            className="row d-flex justify-content-center align-items-center h-80"
-            style={{ paddingBottom: "40px" }}
-          >
-            <div className="col col-xl-8">
-              <div className="card" style={{ borderRadius: "1rem" }}>
-                <AiInsight subTask={props.selectedSubTask.name} />
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

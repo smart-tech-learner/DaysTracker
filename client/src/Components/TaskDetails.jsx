@@ -5,7 +5,6 @@ import logo from "/icons/logo.png";
 import { toast } from "react-toastify";
 import EmojiPicker from "emoji-picker-react";
 import hourglass_icon from "/icons/hourglass_icon.png";
-import home_icon from "/icons/home_icon.png";
 import {
   computeYearsMonthsDaysForTimeLeft,
   computeYearsMonthsDaysForTimePassed,
@@ -15,7 +14,6 @@ import {
   isSelDateLsThanCurrDate,
 } from "../Utils/Utilities";
 import { Link, redirect, useLoaderData, useNavigate } from "react-router-dom";
-import { addedItemsList } from "../Pages/Dashboard";
 import NavBar from "./NavBar";
 import FormLabel from "./FormLabel";
 import FormInput from "./FormInput";
@@ -41,7 +39,7 @@ export const loader = async ({ params }) => {
     return data.details;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
-    return redirect("/dashboard");
+    return redirect("/tasks");
   }
 };
 
@@ -89,7 +87,11 @@ const TaskDetails = () => {
   const [filteredSubTaskList, setFilteredSubTaskList] =
     useState(prepareSubTasksList);
   const [dateLabel, setDateLabel] = useState(
-    taskDetails.trackOption === "time_left" ? "Complete By" : "Started On"
+    taskDetails.trackOption === "time_left"
+      ? taskDetails.status === "completed"
+        ? "Completed On"
+        : "Complete By"
+      : "Started On"
   );
   const [disableDateField, setDisableDateField] = useState(
     !taskDetails.startDate
@@ -107,7 +109,7 @@ const TaskDetails = () => {
       try {
         await axios.delete(`/api/v1/daysTracker/tasks/${_id}`);
         toast.info("Task deleted successfully!");
-        navigate("/dashboard");
+        navigate("/tasks");
       } catch (error) {
         toast.error(error?.ressponse?.data?.msg);
         return error;
@@ -136,7 +138,7 @@ const TaskDetails = () => {
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task completed successfully!");
-        navigate("/dashboard");
+        navigate("/tasks");
       } catch (error) {
         toast.error(error?.ressponse?.data?.msg);
         return error;
@@ -166,7 +168,7 @@ const TaskDetails = () => {
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task tracking stopped successfully!");
-        navigate("/dashboard");
+        navigate("/tasks");
       } catch (error) {
         toast.error(error?.ressponse?.data?.msg);
         return error;
@@ -329,7 +331,7 @@ const TaskDetails = () => {
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task updated successfully!");
-        navigate("/dashboard");
+        navigate("/tasks");
       } catch (error) {
         toast.error(error?.response?.data?.msg);
         return error;
@@ -349,7 +351,11 @@ const TaskDetails = () => {
       setDateLabel("Started On");
     } else {
       if (selectedTrackDetail === "time_left") {
-        setDateLabel("Complete By");
+        if (taskDetails.status === "completed") {
+          setDateLabel("Completed On");
+        } else {
+          setDateLabel("Complete By");
+        }
       } else {
         setDateLabel("Since");
       }
@@ -374,70 +380,76 @@ const TaskDetails = () => {
       <div style={{ padding: "0 0 50px 0" }}>
         <h4 style={{ float: "left", paddingTop: "5px" }}>Task Details</h4>
         <div style={{ float: "right" }}>
-          <Link to="/dashboard" className="btn btn-danger">
+          <Link to="/tasks" className="btn btn-secondary">
             Back
           </Link>
           &nbsp;
-          <div className="btn-group dropstart">
-            <button
-              type="button"
-              className="btn btn-secondary dropdown-toggle"
-              data-bs-toggle="dropdown"
-              data-bs-display="static"
-              aria-expanded="false"
+          {taskDetails.status !== "in-progress" && (
+            <Link
+              to="/tasks"
+              className="btn btn-danger"
+              onClick={onClickDeleteTask}
             >
-              Actions
-            </button>
-            <ul className="dropdown-menu dropdown-menu-lg-end">
-              <li>
-                <button
-                  type="submit"
-                  className="dropdown-item"
-                  onClick={updateTaskDetails}
-                >
-                  Save
-                </button>
-              </li>
-              {taskDetails.trackOption === "time_left" && (
+              Delete
+            </Link>
+          )}
+          {taskDetails.status === "in-progress" && (
+            <div className="btn-group dropstart">
+              <button
+                type="button"
+                className="btn btn-primary dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                Actions
+              </button>
+              <ul className="dropdown-menu dropdown-menu-lg-end">
                 <li>
                   <button
-                    rendered="false"
                     type="submit"
                     className="dropdown-item"
-                    onClick={markTaskCompleted}
+                    onClick={updateTaskDetails}
                   >
-                    Mark Complete
+                    Save
                   </button>
                 </li>
-              )}
-              {taskDetails.trackOption === "time_passed" && (
+                {taskDetails.trackOption === "time_left" && (
+                  <li>
+                    <button
+                      rendered="false"
+                      type="submit"
+                      className="dropdown-item"
+                      onClick={markTaskCompleted}
+                    >
+                      Mark Complete
+                    </button>
+                  </li>
+                )}
+                {taskDetails.trackOption === "time_passed" && (
+                  <li>
+                    <button
+                      rendered="false"
+                      type="submit"
+                      className="dropdown-item"
+                      onClick={stopTaskTracking}
+                    >
+                      Stop Tracking
+                    </button>
+                  </li>
+                )}
                 <li>
                   <button
-                    rendered="false"
                     type="submit"
                     className="dropdown-item"
-                    onClick={stopTaskTracking}
+                    onClick={onClickDeleteTask}
                   >
-                    Stop Tracking
+                    Delete
                   </button>
                 </li>
-              )}
-              <li>
-                <button
-                  type="submit"
-                  className="dropdown-item"
-                  onClick={onClickDeleteTask}
-                >
-                  Delete
-                </button>
-              </li>
-              <li>
-                <Link to="/dashboard" className="dropdown-item">
-                  Cancel
-                </Link>
-              </li>
-            </ul>
-          </div>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
       <br></br>
@@ -477,11 +489,16 @@ const TaskDetails = () => {
           <EmojiPicker theme="dark" onEmojiClick={onSelectIcon} required />
         )}
         &nbsp;
-        <FormInput
+        <input
           type="text"
           name="title"
+          className="form-control"
           value={taskDetails.title}
           onChange={onChangeTaskFormDetails}
+          disabled={
+            taskDetails.status === "completed" ||
+            taskDetails.status === "stopped"
+          }
         />
       </div>
       {formErrors.title && (
@@ -500,6 +517,10 @@ const TaskDetails = () => {
               name="task"
               onChange={onChangeTask}
               value={taskDetails.taskId}
+              disabled={
+                taskDetails.status === "completed" ||
+                taskDetails.status === "stopped"
+              }
             >
               <option>--select task --</option>
               {TasksList().map((itemValue) => {
@@ -522,6 +543,10 @@ const TaskDetails = () => {
               name="subTask"
               onChange={onChangeSubTask}
               value={taskDetails.subTaskId}
+              disabled={
+                taskDetails.status === "completed" ||
+                taskDetails.status === "stopped"
+              }
             >
               <option value="">--select subtask --</option>
               {filteredSubTaskList &&
@@ -553,6 +578,10 @@ const TaskDetails = () => {
           name="trackOption"
           value={taskDetails.trackOption}
           onChange={onChangeTrackingOption}
+          disabled={
+            taskDetails.status === "completed" ||
+            taskDetails.status === "stopped"
+          }
         >
           <option value="no_selection">-- select tracking option --</option>
           <option value="time_passed">
@@ -581,7 +610,11 @@ const TaskDetails = () => {
         <input
           type="date"
           name="startDate"
-          disabled={disableDateField}
+          disabled={
+            disableDateField ||
+            taskDetails.status === "completed" ||
+            taskDetails.status === "stopped"
+          }
           value={dateValue}
           className="form-control"
           onChange={onChangeDate}

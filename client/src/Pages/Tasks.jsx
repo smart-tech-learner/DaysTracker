@@ -5,12 +5,13 @@ import NavBar from "../Components/NavBar";
 import bot from "/icons/bot.png";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import AiInsight from "../Components/AiInsight";
+import AIChatBot from "../Components/AIChatBot";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { createContext } from "react";
 import SectionContainer from "../Components/SectionContainer";
 import TasksDisplayContainer from "../Components/TasksDisplayContainer";
+import AIChatBotContainerModal from "../Components/AIChatBotContainerModal";
 
 export const addedItemsList = [];
 
@@ -26,7 +27,9 @@ export const loader = async ({ request }) => {
 
 const AllTasksContext = createContext();
 
-const Dashboard = () => {
+const Tasks = () => {
+  const [showAIBotModal, setShowAIBotModal] = useState(false);
+
   const allTasks = useLoaderData();
 
   const [filteredTask, setFilteredTask] = useState(
@@ -43,8 +46,16 @@ const Dashboard = () => {
     setFilteredTask([...tasks]);
   };
 
+  const onClickAIBot = () => {
+    setShowAIBotModal(true);
+  };
+
   return (
     <AllTasksContext.Provider value={{ allTasks }}>
+      <AIChatBotContainerModal
+        show={showAIBotModal}
+        handleClose={() => setShowAIBotModal(!showAIBotModal)}
+      />
       <NavBar />
       <div
         className="container"
@@ -56,7 +67,7 @@ const Dashboard = () => {
               <img src={add_icon} alt="task" />
             </Link>
           </div>
-          <h2>Dashboard</h2>
+          <h2>Tasks</h2>
         </div>
         <br></br>
         <SectionContainer selectedStatusToFilter={selectedStatusToFilter} />
@@ -69,13 +80,7 @@ const Dashboard = () => {
             right: "0",
           }}
         >
-          <Popup
-            style={{ width: "500px" }}
-            trigger={<img src={bot} alt="task" />}
-            position="left bottom"
-          >
-            <AiInsight />
-          </Popup>
+          <img src={bot} alt="bot" onClick={onClickAIBot} />
         </div>
       </div>
     </AllTasksContext.Provider>
@@ -83,4 +88,4 @@ const Dashboard = () => {
 };
 
 export const useAllTasksContext = () => useContext(AllTasksContext);
-export default Dashboard;
+export default Tasks;

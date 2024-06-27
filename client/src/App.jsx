@@ -1,18 +1,18 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Landing from "./Pages/Landing";
 import HomeLayout from "./Components/HomeLayout";
-import Dashboard, { loader as dashboardLoader } from "./Pages/Dashboard";
+import Tasks, { loader as tasksLoader } from "./Pages/Tasks";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddTaskContainer from "./Components/AddTaskContainer";
-import DashboardLayout from "./Components/DashboardLayout";
+import TasksLayout from "./Components/TasksLayout";
 import { action as RegisterAction } from "./Pages/Register";
 import { action as LoginAction } from "./Pages/Login";
 import TaskDetails from "./Components/TaskDetails";
 import { loader as taskDetailsLoader } from "./Components/TaskDetails";
 import Settings from "./Pages/Settings";
-import { loader as dashboardLayoutLoader } from "./Components/DashboardLayout";
+import { loader as tasksLayoutLoader } from "./Components/TasksLayout";
 
 const router = createBrowserRouter([
   {
@@ -38,14 +38,14 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: "dashboard",
-        element: <DashboardLayout />,
-        loader: dashboardLayoutLoader,
+        path: "tasks",
+        element: <TasksLayout />,
+        loader: tasksLayoutLoader,
         children: [
           {
             index: true,
-            element: <Dashboard />,
-            loader: dashboardLoader,
+            element: <Tasks />,
+            loader: tasksLoader,
           },
           {
             path: "addTask",

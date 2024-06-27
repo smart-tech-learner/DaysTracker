@@ -7,12 +7,12 @@ export const loader = async () => {
     const { data } = await axios.get("/api/v1/daysTracker/users/currentUser");
     return data;
   } catch (error) {
-    return redirect("/");
+    return redirect("/login");
   }
 };
 
 const UserContext = createContext();
-const DashboardLayout = () => {
+const TasksLayout = () => {
   const user = useLoaderData();
 
   return (
@@ -23,4 +23,4 @@ const DashboardLayout = () => {
 };
 
 export const useUserContext = () => useContext(UserContext);
-export default DashboardLayout;
+export default TasksLayout;

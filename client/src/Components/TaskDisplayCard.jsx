@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import day from "dayjs";
 import { toast } from "react-toastify";
-import { addedItemsList } from "../Pages/Dashboard";
+import { addedItemsList } from "../Pages/Tasks";
 
 const TaskDisplayCard = (props) => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const TaskDisplayCard = (props) => {
 
       addedItemsList.splice(taskIndex, 1);
       toast.info("Task deleted successfully!");
-      navigate("/dashboard");
+      navigate("/tasks");
     }
   };
 
@@ -48,30 +48,27 @@ const TaskDisplayCard = (props) => {
   };
 
   return (
-    <div
-      className="container"
-      onClick={props.viewAs === "dashboard" ? onClickTask : ""}
-    >
+    <div className="container" onClick={onClickTask}>
       <div
         className="grid-container"
         style={
-          props.viewAs === "dashboard"
-            ? trackOption === "time_passed"
-              ? {
-                  backgroundColor: "rgb(186 212 235)",
-                  boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
-                }
-              : {
-                  backgroundColor: "#e4d7b2",
-                  boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
-                }
+          status === "stopped"
+            ? {
+                backgroundColor: "rgb(235 197 186)",
+                boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
+              }
             : status === "completed"
             ? {
-                backgroundColor: "rgb(219 229 223)",
+                backgroundColor: "rgb(178 228 180)",
+                boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
+              }
+            : trackOption === "time_passed"
+            ? {
+                backgroundColor: "rgb(186 212 235)",
                 boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
               }
             : {
-                backgroundColor: "rgb(238 200 200)",
+                backgroundColor: "#e4d7b2",
                 boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
               }
         }

@@ -1,7 +1,7 @@
 import "express-async-errors";
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { response } from "express";
+import express from "express";
 const app = express();
 import morgan from "morgan";
 import mongoose from "mongoose";

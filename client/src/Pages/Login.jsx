@@ -13,7 +13,7 @@ export const action = async ({ request }) => {
   try {
     await axios.post("/api/v1/daysTracker/auth/login", data);
     toast.success("Login successful!");
-    return redirect("/dashboard");
+    return redirect("/tasks");
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;

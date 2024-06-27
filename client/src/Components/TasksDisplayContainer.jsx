@@ -20,13 +20,7 @@ const TasksDisplayContainer = (props) => {
         <div>
           {props.filteredTaskByStatus &&
             props.filteredTaskByStatus.map((item) => {
-              return (
-                <TaskDisplayCard
-                  itemDetails={item}
-                  key={item._id}
-                  viewAs="dashboard"
-                />
-              );
+              return <TaskDisplayCard itemDetails={item} key={item._id} />;
             })}
         </div>
       )}

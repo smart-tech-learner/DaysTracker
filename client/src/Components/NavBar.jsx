@@ -3,9 +3,10 @@ import { Link, NavLink, redirect, useNavigate } from "react-router-dom";
 import logo from "/icons/logo.png";
 import track_icon from "/icons/track_icon.png";
 import avatar_m from "/icons/avatar_m.png";
+import avatar_w from "/icons/avatar_w.png";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useUserContext } from "./DashboardLayout";
+import { useUserContext } from "./TasksLayout";
 
 const NavBar = () => {
   const { user } = useUserContext();
@@ -59,12 +60,16 @@ const NavBar = () => {
               <li className="nav-item">
                 <div style={{ display: "flex" }}>
                   <img src={track_icon} alt="track" height="30" />
-                  <h5 style={{ fontFamily: "cursive" }}>Track on the GO....</h5>
+                  <h5 style={{ fontStyle: "italic" }}>Track on the GO....</h5>
                 </div>
               </li>
             </ul>
             <div style={{ display: "flex" }}>
-              <img src={avatar_m} alt="logo" style={{ height: "40px" }} />
+              {user.user.gender === "male" ? (
+                <img src={avatar_m} alt="logo" style={{ height: "40px" }} />
+              ) : (
+                <img src={avatar_w} alt="logo" style={{ height: "40px" }} />
+              )}
               <ul className="navbar-nav">
                 <li className="nav-item dropdown">
                   <a
@@ -77,11 +82,6 @@ const NavBar = () => {
                     {user.user.firstName}
                   </a>
                   <ul className="dropdown-menu">
-                    {/* <li>
-                      <Link className="dropdown-item" to="/settings">
-                        Settings
-                      </Link>
-                    </li> */}
                     <li>
                       <Link className="dropdown-item" onClick={logoutUser}>
                         Logout

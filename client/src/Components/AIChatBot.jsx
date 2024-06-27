@@ -5,31 +5,21 @@ import { nanoid } from "nanoid";
 import gemini_icon from "/icons/gemini-icon.png";
 import send_icon from "/icons/send_icon.png";
 import user_icon from "/icons/user_icon.png";
-import { useAllTasksContext } from "../Pages/Dashboard";
+import { useUserContext } from "./TasksLayout";
 
-const AiInsight = (props) => {
-  const key = process.env.REACT_APP_GOOGLE_API_KEY;
-  console.log("key::: ", key);
-  const tasks = useAllTasksContext();
-  console.log(tasks);
-  const promptText = props.subTask;
+const AIChatBot = () => {
+  const { user } = useUserContext();
   const [responseList, setResponseList] = useState([
     {
       id: nanoid(5),
       by: "bot",
-      resp: "Hey, this is your personal bot. Please feel free to ask your queries :-)",
+      resp: `Hey ${user.user.firstName}, I'm your personal AI Assistant Chat Bot. Please feel free to ask your queries..`,
     },
   ]);
   const [searchText, setSerachText] = useState("");
-  const genAI = new GoogleGenerativeAI("process.env.REACT_APP_GOOGLE_API_KEY");
+  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
 
-  const welcomeNote = () => {
-    aiRun(
-      `start with encouraging for taking steps to quit ${promptText} in about 30 words.`
-    );
-  };
   const aiRun = async (message) => {
-    // setResponseList([...responseList, searchRequest]);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const result = await model.generateContent(message);
@@ -133,4 +123,4 @@ const AiInsight = (props) => {
   );
 };
 
-export default AiInsight;
+export default AIChatBot;

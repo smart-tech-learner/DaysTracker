@@ -4,7 +4,7 @@ import task_total from "/icons/task_total.png";
 import task_stopped from "/icons/task_stopped.png";
 import task_completed from "/icons/task_completed.png";
 import "../css/SectionContainer.css";
-import { useAllTasksContext } from "../Pages/Dashboard";
+import { useAllTasksContext } from "../Pages/Tasks";
 
 const SectionContainer = (props) => {
   const data = useAllTasksContext();
