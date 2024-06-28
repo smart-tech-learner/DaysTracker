@@ -112,3 +112,20 @@ export const validateUserPassword = withValidationErrors([
     .notEmpty()
     .withMessage("confirm new password is required"),
 ]);
+
+export const validateDetailsOnPasswordReset = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("email is required")
+    .isEmail()
+    .withMessage("invalid email")
+    .custom(async (email) => {
+      const user = await UserModel.findOne({ email });
+
+      if (!user) throw new BadRequestError("user not found");
+    }),
+  body("newPassword").notEmpty().withMessage("password is required"),
+  body("confirmNewPassword")
+    .notEmpty()
+    .withMessage("confirm password is required"),
+]);

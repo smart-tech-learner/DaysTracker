@@ -11,8 +11,8 @@ import { action as RegisterAction } from "./Pages/Register";
 import { action as LoginAction } from "./Pages/Login";
 import TaskDetails from "./Components/TaskDetails";
 import { loader as taskDetailsLoader } from "./Components/TaskDetails";
-import Settings from "./Pages/Settings";
 import { loader as tasksLayoutLoader } from "./Components/TasksLayout";
+import ResetPassword from "./Pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +34,8 @@ const router = createBrowserRouter([
         action: LoginAction,
       },
       {
-        path: "settings",
-        element: <Settings />,
+        path: "resetPassword",
+        element: <ResetPassword />,
       },
       {
         path: "tasks",

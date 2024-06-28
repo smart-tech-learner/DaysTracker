@@ -10,6 +10,7 @@ import mongoose from "mongoose";
 import taskRouter from "./routes/taskRouter.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
+import passwordResetRouter from "./routes/passwordResetRouter.js";
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 
@@ -31,6 +32,7 @@ app.use(express.json());
 app.use("/api/v1/daysTracker/users", authenticateUser, userRouter);
 app.use("/api/v1/daysTracker/tasks", authenticateUser, taskRouter);
 app.use("/api/v1/daysTracker/auth", authRouter);
+app.use("/api/v1/daysTracker", passwordResetRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));

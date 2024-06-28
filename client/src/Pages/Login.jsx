@@ -1,6 +1,6 @@
 import React from "react";
 import login_image from "/images/login_image.svg";
-import { Form, NavLink, redirect } from "react-router-dom";
+import { Form, Link, NavLink, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormLabel from "../Components/FormLabel";
 import FormInput from "../Components/FormInput";
@@ -62,8 +62,13 @@ const Login = () => {
                         <div data-mdb-input-init className="form-outline mb-4">
                           <FormLabel name="password" labelText="Password" />
                           <FormInput type="password" name="password" />
+                          <Link
+                            style={{ fontWeight: "bolder" }}
+                            to="/resetPassword"
+                          >
+                            Forgot Password?
+                          </Link>
                         </div>
-
                         <div className="pt-1 mb-4">
                           <button
                             data-mdb-button-init
