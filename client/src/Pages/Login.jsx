@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import login_image from "/images/login_image.svg";
 import { Form, Link, NavLink, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import FormLabel from "../Components/FormLabel";
 import FormInput from "../Components/FormInput";
 import axios from "axios";
+import show_password_icon from "/icons/show_password_icon.png";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -21,6 +22,12 @@ export const action = async ({ request }) => {
 };
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
       <section className="vh-100" style={{ backgroundColor: "9A616D" }}>
@@ -61,7 +68,22 @@ const Login = () => {
 
                         <div data-mdb-input-init className="form-outline mb-4">
                           <FormLabel name="password" labelText="Password" />
-                          <FormInput type="password" name="password" />
+                          <div class="input-group">
+                            <input
+                              type={showPassword ? "text" : "password"}
+                              name="password"
+                              className="form-control"
+                            />
+                            <div class="input-group-append">
+                              <img
+                                style={{ border: "1px solid darkgrey" }}
+                                src={show_password_icon}
+                                alt="show"
+                                height="38"
+                                onClick={onClickShowPassword}
+                              />
+                            </div>
+                          </div>
                           <Link
                             style={{ fontWeight: "bolder" }}
                             to="/resetPassword"
