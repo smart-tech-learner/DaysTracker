@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../css/Landing.css";
-import login_image from "/images/login_image.svg";
 
 const Landing = () => {
   return (
@@ -20,10 +19,16 @@ const Landing = () => {
               className="mb-4 opacity-70"
               style={{ color: "hsl(218, 81%, 85%)" }}
             >
-              Your ultimate simple day tracker and counter application! Whether
-              you're aiming to build new habits, track milestones, or simply
-              keep a tally of your daily activities, our app provides the
-              perfect solution with its intuitive design and powerful features.
+              Your ultimate simple day tracker and counter application!
+            </p>
+            <p
+              className="mb-4 opacity-70"
+              style={{ color: "hsl(217, 10%, 50.8%)" }}
+            >
+              Whether you're aiming to build new habits, track milestones, or
+              simply keep a tally of your daily activities, our app provides the
+              simple perfect solution with its intuitive design and powerful
+              features.
             </p>
           </div>
 

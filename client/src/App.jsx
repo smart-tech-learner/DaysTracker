@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Landing from "./Pages/Landing";
 import HomeLayout from "./Components/HomeLayout";
-import Tasks, { loader as tasksLoader } from "./Pages/Tasks";
+import Home, { loader as tasksLoader } from "./Pages/Home";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -42,13 +42,13 @@ const router = createBrowserRouter([
         element: <ResetPassword />,
       },
       {
-        path: "tasks",
+        path: "home",
         element: <TasksLayout />,
         loader: tasksLayoutLoader,
         children: [
           {
             index: true,
-            element: <Tasks />,
+            element: <Home />,
             loader: tasksLoader,
           },
           {

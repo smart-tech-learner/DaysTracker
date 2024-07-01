@@ -20,7 +20,7 @@ const Error = () => {
         Something went wrong.
       </h3>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/tasks">back home</Link>
+        <Link to="/home">back home</Link>
       </div>
     </div>
   );

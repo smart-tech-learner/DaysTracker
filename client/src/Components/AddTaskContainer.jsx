@@ -32,7 +32,7 @@ const AddTaskContainer = () => {
       <NavBar />
       {!renderDaysTrackerOverview && (
         <div style={{ float: "right" }}>
-          <Link to="/tasks" className="btn btn-danger">
+          <Link to="/home" className="btn btn-danger">
             Cancel
           </Link>
         </div>

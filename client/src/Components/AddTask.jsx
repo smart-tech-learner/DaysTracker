@@ -14,7 +14,6 @@ import {
   isSelDateLsThanCurrDate,
 } from "../Utils/Utilities";
 import { Link, useNavigate } from "react-router-dom";
-import { addedItemsList } from "../Pages/Tasks";
 import NavBar from "./NavBar";
 import FormInput from "./FormInput";
 import FormLabel from "./FormLabel";
@@ -183,7 +182,7 @@ const AddTask = (props) => {
       try {
         await axios.post("/api/v1/daysTracker/tasks", newTask);
         toast.success("Task created successfully!");
-        navigate("/tasks");
+        navigate("/home");
       } catch (error) {
         toast.error(error?.response?.data?.msg);
         return error;
@@ -194,13 +193,16 @@ const AddTask = (props) => {
   return (
     <section className="vh-50" style={{ backgroundColor: "9A616D" }}>
       <div className="container py-1 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-80">
+        <div
+          className="row d-flex justify-content-center align-items-center h-80"
+          style={{ paddingBottom: "157px" }}
+        >
           <div className="col col-xl-8">
             <div className="card" style={{ borderRadius: "1rem" }}>
               <div
                 div
                 className="container"
-                style={{ paddingTop: "30px", paddingBottom: "30px" }}
+                style={{ paddingTop: "30px", paddingBottom: "70px" }}
               >
                 <NavBar />
                 <div style={{ padding: "0 0 50px 0" }}>
@@ -214,7 +216,7 @@ const AddTask = (props) => {
                       Create
                     </button>
                     &nbsp;
-                    <Link to="/tasks" className="btn btn-danger">
+                    <Link to="/home" className="btn btn-danger">
                       Cancel
                     </Link>
                   </div>

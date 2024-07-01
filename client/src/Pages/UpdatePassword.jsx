@@ -21,7 +21,7 @@ const UpdatePassword = () => {
   };
 
   const cancelChangePasswordModal = () => {
-    navigate("/tasks");
+    navigate("/home");
   };
 
   const saveUpdateUserPassword = async (event) => {
@@ -36,7 +36,7 @@ const UpdatePassword = () => {
           changePasswordValues
         );
         toast.success("Password updated successfully");
-        navigate("/tasks");
+        navigate("/home");
       } catch (error) {
         toast.error(error?.response?.data?.msg);
         return error;

@@ -38,7 +38,7 @@ export const loader = async ({ params }) => {
     return data.details;
   } catch (error) {
     toast.error(error?.response?.data?.msg);
-    return redirect("/tasks");
+    return redirect("/home");
   }
 };
 
@@ -110,7 +110,7 @@ const TaskDetails = () => {
       try {
         await axios.delete(`/api/v1/daysTracker/tasks/${_id}`);
         toast.info("Task deleted successfully!");
-        navigate("/tasks");
+        navigate("/home");
       } catch (error) {
         toast.error(error?.ressponse?.data?.msg);
         return error;
@@ -140,7 +140,7 @@ const TaskDetails = () => {
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task completed successfully!");
-        navigate("/tasks");
+        navigate("/home");
       } catch (error) {
         toast.error(error?.ressponse?.data?.msg);
         return error;
@@ -170,7 +170,7 @@ const TaskDetails = () => {
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task tracking stopped successfully!");
-        navigate("/tasks");
+        navigate("/home");
       } catch (error) {
         toast.error(error?.ressponse?.data?.msg);
         return error;
@@ -333,7 +333,7 @@ const TaskDetails = () => {
       try {
         await axios.patch(`/api/v1/daysTracker/tasks/${_id}`, updatedTask);
         toast.success("Task updated successfully!");
-        navigate("/tasks");
+        navigate("/home");
       } catch (error) {
         toast.error(error?.response?.data?.msg);
         return error;
@@ -382,13 +382,13 @@ const TaskDetails = () => {
       <div style={{ padding: "0 0 50px 0" }}>
         <h4 style={{ float: "left", paddingTop: "5px" }}>Task Details</h4>
         <div style={{ float: "right" }}>
-          <Link to="/tasks" className="btn btn-secondary">
+          <Link to="/home" className="btn btn-secondary">
             Back
           </Link>
           &nbsp;
           {taskDetails.status !== "in-progress" && (
             <Link
-              to="/tasks"
+              to="/home"
               className="btn btn-danger"
               onClick={onClickDeleteTask}
             >

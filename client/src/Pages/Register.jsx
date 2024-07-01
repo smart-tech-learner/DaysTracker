@@ -23,7 +23,7 @@ const Register = () => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
-    <div style={{ paddingTop: "80px" }}>
+    <div>
       <section className="">
         <div
           className="px-4 py-5 px-md-5 text-center text-lg-start"
@@ -33,15 +33,17 @@ const Register = () => {
             <div className="row gx-lg-5 align-items-center">
               <div className="col-lg-6 mb-5 mb-lg-0">
                 <h1 className="my-5 display-3 fw-bold ls-tight">
-                  The best <br />
-                  <span className="text-primary">simple day counter</span>
+                  Track Your Progress <br />
+                  <span className="text-primary">Effortlessly</span>
                 </h1>
                 <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
-                  Quit smoking, drinking and other bad habits. Keep track of
-                  happy moments in your life. Remember your errands. Form good
-                  habits by seeing the...
-                  <br></br>
-                  LAST TIME YOU DID IT.
+                  Your ultimate simple day tracker and counter application!{" "}
+                </p>
+                <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
+                  Whether you're aiming to build new habits, track milestones,
+                  or simply keep a tally of your daily activities, our app
+                  provides the simple perfect solution with its intuitive design
+                  and powerful features.
                 </p>
               </div>
 

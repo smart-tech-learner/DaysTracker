@@ -106,10 +106,7 @@ const NavBar = () => {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <Link
-                        to="/tasks/updatePassword"
-                        className="dropdown-item"
-                      >
+                      <Link to="/home/updatePassword" className="dropdown-item">
                         Change Password
                       </Link>
                     </li>

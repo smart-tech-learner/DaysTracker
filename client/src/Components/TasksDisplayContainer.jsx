@@ -3,7 +3,6 @@ import no_tasks_image from "/images/no_tasks.svg";
 import TaskDisplayCard from "./TaskDisplayCard";
 
 const TasksDisplayContainer = (props) => {
-  const filteredTasks = props.filteredTaskByStatus;
   return (
     <div>
       {props.filteredTaskByStatus.length == 0 ? (

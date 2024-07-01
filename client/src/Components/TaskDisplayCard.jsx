@@ -7,28 +7,13 @@ import stopped_icon from "/icons/stopped_icon.png";
 import {
   computeYearsMonthsDaysForTimeLeft,
   computeYearsMonthsDaysForTimePassed,
-  currentDate,
   isSelDateGtThanCurrDate,
-  isSelDateLsThanCurrDate,
 } from "../Utils/Utilities";
 import { useNavigate } from "react-router-dom";
 import day from "dayjs";
-import { toast } from "react-toastify";
-import { addedItemsList } from "../Pages/Tasks";
 
 const TaskDisplayCard = (props) => {
   const navigate = useNavigate();
-
-  const onClickDeleteTask = (taskId) => {
-    let confirmationText = `Are you sure you want to delete the task?`;
-    if (confirm(confirmationText) == true) {
-      const taskIndex = addedItemsList.findIndex((item) => item.id === taskId);
-
-      addedItemsList.splice(taskIndex, 1);
-      toast.info("Task deleted successfully!");
-      navigate("/tasks");
-    }
-  };
 
   const {
     _id,

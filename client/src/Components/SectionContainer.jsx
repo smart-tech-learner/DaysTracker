@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import task_in_progress from "/icons/task_in_progress.png";
 import task_total from "/icons/task_total.png";
 import task_stopped from "/icons/task_stopped.png";
 import task_completed from "/icons/task_completed.png";
 import "../css/SectionContainer.css";
-import { useAllTasksContext } from "../Pages/Tasks";
+import { useAllTasksContext } from "../Pages/Home";
 
 const SectionContainer = (props) => {
   const data = useAllTasksContext();
