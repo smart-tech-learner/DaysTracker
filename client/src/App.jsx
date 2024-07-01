@@ -14,12 +14,14 @@ import { loader as taskDetailsLoader } from "./Components/TaskDetails";
 import { loader as tasksLayoutLoader } from "./Components/TasksLayout";
 import ResetPassword from "./Pages/ResetPassword";
 import "./css/App.css";
-import { useState } from "react";
+import UpdatePassword from "./Pages/UpdatePassword";
+import Error from "./Pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
             path: "taskDetails/:id",
             element: <TaskDetails />,
             loader: taskDetailsLoader,
+          },
+          {
+            path: "updatePassword",
+            element: <UpdatePassword />,
           },
         ],
       },

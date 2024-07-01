@@ -9,10 +9,8 @@ import light_mode from "/icons/light_mode.png";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useUserContext } from "./TasksLayout";
-import ChangePasswordModal from "./ChangePasswordModal";
 
 const NavBar = () => {
-  const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
   const { user } = useUserContext();
   const navigate = useNavigate();
   const logoutUser = async () => {
@@ -23,18 +21,6 @@ const NavBar = () => {
     } catch (error) {
       return error;
     }
-  };
-
-  const onClickChangePassword = () => {
-    setShowChangePasswordModal(true);
-  };
-
-  const fetchDisplayMode = () => {
-    const mode = localStorage.getItem("tracker-display-mode");
-    if (mode === "dark-mode") {
-      document.body.classList.toggle("dark-mode");
-    }
-    return mode;
   };
 
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -52,10 +38,6 @@ const NavBar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <ChangePasswordModal
-        show={showChangePasswordModal}
-        handleClose={() => setShowChangePasswordModal(!showChangePasswordModal)}
-      />
       <div className="container">
         <img src={logo} alt="logo" style={{ height: "30px" }} href="/" />
         &nbsp;
@@ -125,8 +107,8 @@ const NavBar = () => {
                   <ul className="dropdown-menu">
                     <li>
                       <Link
+                        to="/tasks/updatePassword"
                         className="dropdown-item"
-                        onClick={onClickChangePassword}
                       >
                         Change Password
                       </Link>
