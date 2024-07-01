@@ -15,7 +15,7 @@ const AIChatBotContainerModal = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>AI Chat Bot</Modal.Title>
+        <Modal.Title style={{ color: "brown" }}>AI Chat Bot</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <AIChatBot />

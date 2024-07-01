@@ -16,7 +16,7 @@ const ChangePasswordModal = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>Change Password</Modal.Title>
+        <Modal.Title style={{ color: "brown" }}>Change Password</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <ChangePassword handleClose={handleClose} />

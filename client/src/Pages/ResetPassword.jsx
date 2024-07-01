@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import FormLabel from "../Components/FormLabel";
 import FormInput from "../Components/FormInput";
 import axios from "axios";
+import show_password_icon from "/icons/show_password_icon.png";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -59,6 +60,19 @@ const ResetPassword = () => {
     setFormErrors(errors);
     return errors;
   }
+
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
+  const onClickShowNewPassword = () => {
+    setShowNewPassword(!showNewPassword);
+  };
+
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+
+  const onClickShowConfirmNewPassword = () => {
+    setShowConfirmNewPassword(!showConfirmNewPassword);
+  };
+
   return (
     <div>
       <section className="vh-100" style={{ backgroundColor: "9A616D" }}>
@@ -105,12 +119,25 @@ const ResetPassword = () => {
                             name="newPassword"
                             labelText="Enter new password"
                           />
-                          <FormInput
-                            type="password"
-                            name="newPassword"
-                            value={formDetails.newPassword}
-                            onChange={changeFormDetails}
-                          />
+                          <div className="input-group">
+                            <input
+                              type={showNewPassword ? "text" : "password"}
+                              id="newPassword"
+                              name="newPassword"
+                              className="form-control"
+                              value={formDetails.newPassword}
+                              onChange={changeFormDetails}
+                            />
+                            <div className="input-group-append">
+                              <img
+                                style={{ border: "1px solid darkgrey" }}
+                                src={show_password_icon}
+                                alt="show"
+                                height="38"
+                                onClick={onClickShowNewPassword}
+                              />
+                            </div>
+                          </div>
                           <div style={{ color: "red" }}>
                             {formErrors.newPassword}
                           </div>
@@ -121,12 +148,27 @@ const ResetPassword = () => {
                             name="confirmNewPassword"
                             labelText="Confirm password"
                           />
-                          <FormInput
-                            type="password"
-                            name="confirmNewPassword"
-                            value={formDetails.confirmNewPassword}
-                            onChange={changeFormDetails}
-                          />
+                          <div className="input-group">
+                            <input
+                              type={
+                                showConfirmNewPassword ? "text" : "password"
+                              }
+                              id="confirmNewPassword"
+                              name="confirmNewPassword"
+                              className="form-control"
+                              value={formDetails.confirmNewPassword}
+                              onChange={changeFormDetails}
+                            />
+                            <div className="input-group-append">
+                              <img
+                                style={{ border: "1px solid darkgrey" }}
+                                src={show_password_icon}
+                                alt="show"
+                                height="38"
+                                onClick={onClickShowConfirmNewPassword}
+                              />
+                            </div>
+                          </div>
                           <div style={{ color: "red" }}>
                             {formErrors.confirmNewPassword}
                           </div>

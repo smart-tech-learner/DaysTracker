@@ -13,25 +13,20 @@ const Landing = () => {
               className="my-5 display-5 fw-bold ls-tight"
               style={{ color: "hsl(218, 81%, 95%)" }}
             >
-              The best <br />
-              <span style={{ color: "hsl(218, 81%, 75%)" }}>
-                simple day tracker/counter
-              </span>
+              Track Your Progress <br />
+              <span style={{ color: "hsl(218, 81%, 75%)" }}>Effortlessly</span>
             </h1>
             <p
               className="mb-4 opacity-70"
               style={{ color: "hsl(218, 81%, 85%)" }}
             >
-              Quit smoking, drinking and other bad habits. Keep track of happy
-              moments in your life. Remember your errands. Form good habits by
-              seeing the...
-              <br></br>
-              LAST TIME YOU DID IT
+              Your ultimate simple day tracker and counter application! Whether
+              you're aiming to build new habits, track milestones, or simply
+              keep a tally of your daily activities, our app provides the
+              perfect solution with its intuitive design and powerful features.
             </p>
           </div>
-          <div className="col-lg-5 mb-5 mb-lg-1 position-relative">
-            <img src={login_image} alt="login" style={{ height: "340px" }} />
-          </div>
+
           <div style={{ display: "flex" }}>
             <div className="pt-1 mb-4">
               <NavLink

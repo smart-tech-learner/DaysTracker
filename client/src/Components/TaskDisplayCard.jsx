@@ -59,28 +59,28 @@ const TaskDisplayCard = (props) => {
           status === "stopped"
             ? {
                 backgroundColor: "rgb(235 197 186)",
-                boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
+                // boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
               }
             : status === "completed"
             ? {
                 backgroundColor: "rgb(178 228 180)",
-                boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
+                // boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
               }
             : trackOption === "time_passed"
             ? {
                 backgroundColor: "rgb(186 212 235)",
-                boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
+                // boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
               }
             : {
                 backgroundColor: "#e4d7b2",
-                boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
+                // boxShadow: "10px 10px 20px #babecc, -10px -10px 20px #ffffff",
               }
         }
       >
         <div className="item2">
           <img src={icon ? icon : logo} height={40} />
         </div>
-        <div className="item3">
+        <div className="item3" style={{ color: "brown" }}>
           {title !== "" ? (
             <h6 className="card-title">{title}</h6>
           ) : (

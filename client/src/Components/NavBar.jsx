@@ -4,6 +4,8 @@ import logo from "/icons/logo.png";
 import track_icon from "/icons/track_icon.png";
 import avatar_m from "/icons/avatar_m.png";
 import avatar_w from "/icons/avatar_w.png";
+import dark_mode from "/icons/dark_mode.png";
+import light_mode from "/icons/light_mode.png";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useUserContext } from "./TasksLayout";
@@ -25,6 +27,27 @@ const NavBar = () => {
 
   const onClickChangePassword = () => {
     setShowChangePasswordModal(true);
+  };
+
+  const fetchDisplayMode = () => {
+    const mode = localStorage.getItem("tracker-display-mode");
+    if (mode === "dark-mode") {
+      document.body.classList.toggle("dark-mode");
+    }
+    return mode;
+  };
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const onSetMode = () => {
+    document.body.classList.toggle("dark-mode");
+    if (localStorage.getItem("tracker-display-mode") === "dark-mode") {
+      setIsDarkMode(false);
+      localStorage.setItem("tracker-display-mode", "light-mode");
+    } else {
+      setIsDarkMode(true);
+      localStorage.setItem("tracker-display-mode", "dark-mode");
+    }
   };
 
   return (
@@ -76,6 +99,13 @@ const NavBar = () => {
               </li>
             </ul>
             <div style={{ display: "flex" }}>
+              <img
+                src={!isDarkMode ? dark_mode : light_mode}
+                alt="logo"
+                style={{ height: "35px", paddingTop: "3px" }}
+                onClick={onSetMode}
+              />
+              &nbsp; &nbsp; &nbsp;
               {user.user.gender === "male" ? (
                 <img src={avatar_m} alt="logo" style={{ height: "40px" }} />
               ) : (

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import show_password_icon from "/icons/show_password_icon.png";
 
 const ChangePassword = (props) => {
   const [changePasswordValues, setChangePasswordValues] = useState({
@@ -68,48 +69,111 @@ const ChangePassword = (props) => {
     return errors;
   }
 
+  const [showOldPassword, setShowOldPassword] = useState(false);
+
+  const onClickShowOldPassword = () => {
+    setShowOldPassword(!showOldPassword);
+  };
+
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
+  const onClickShowNewPassword = () => {
+    setShowNewPassword(!showNewPassword);
+  };
+
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+
+  const onClickShowConfirmNewPassword = () => {
+    setShowConfirmNewPassword(!showConfirmNewPassword);
+  };
+
   return (
     <form>
       <div className="mb-3">
-        <label htmlFor="oldPassword" className="form-label">
+        <label
+          htmlFor="oldPassword"
+          className="form-label"
+          style={{ color: "brown" }}
+        >
           Old Password
         </label>
-        <input
-          type="password"
-          className="form-control"
-          id="oldPassword"
-          name="oldPassword"
-          onChange={onChangePasswordDetails}
-          value={changePasswordValues.oldPassword}
-        />
+        <div className="input-group">
+          <input
+            type={showOldPassword ? "text" : "password"}
+            id="oldPassword"
+            name="oldPassword"
+            className="form-control"
+            onChange={onChangePasswordDetails}
+            value={changePasswordValues.oldPassword}
+          />
+          <div className="input-group-append">
+            <img
+              style={{ border: "1px solid darkgrey" }}
+              src={show_password_icon}
+              alt="show"
+              height="38"
+              onClick={onClickShowOldPassword}
+            />
+          </div>
+        </div>
         <div style={{ color: "red" }}>{formErrors.oldPassword}</div>
       </div>
       <div className="mb-3">
-        <label htmlFor="newPassword" className="form-label">
+        <label
+          htmlFor="newPassword"
+          className="form-label"
+          style={{ color: "brown" }}
+        >
           New Password
         </label>
-        <input
-          type="password"
-          className="form-control"
-          id="newPassword"
-          name="newPassword"
-          onChange={onChangePasswordDetails}
-          value={changePasswordValues.newPassword}
-        />
+        <div className="input-group">
+          <input
+            type={showNewPassword ? "text" : "password"}
+            id="newPassword"
+            name="newPassword"
+            className="form-control"
+            onChange={onChangePasswordDetails}
+            value={changePasswordValues.newPassword}
+          />
+          <div className="input-group-append">
+            <img
+              style={{ border: "1px solid darkgrey" }}
+              src={show_password_icon}
+              alt="show"
+              height="38"
+              onClick={onClickShowNewPassword}
+            />
+          </div>
+        </div>
         <div style={{ color: "red" }}>{formErrors.newPassword}</div>
       </div>
       <div className="mb-3">
-        <label htmlFor="confirmNewPassword" className="form-label">
+        <label
+          htmlFor="confirmNewPassword"
+          className="form-label"
+          style={{ color: "brown" }}
+        >
           Confirm New Password
         </label>
-        <input
-          type="password"
-          className="form-control"
-          id="confirmNewPassword"
-          name="confirmNewPassword"
-          onChange={onChangePasswordDetails}
-          value={changePasswordValues.confirmNewPassword}
-        />
+        <div className="input-group">
+          <input
+            type={showConfirmNewPassword ? "text" : "password"}
+            id="confirmNewPassword"
+            name="confirmNewPassword"
+            className="form-control"
+            onChange={onChangePasswordDetails}
+            value={changePasswordValues.confirmNewPassword}
+          />
+          <div className="input-group-append">
+            <img
+              style={{ border: "1px solid darkgrey" }}
+              src={show_password_icon}
+              alt="show"
+              height="38"
+              onClick={onClickShowConfirmNewPassword}
+            />
+          </div>
+        </div>
         <div style={{ color: "red" }}>{formErrors.confirmNewPassword}</div>
       </div>
 

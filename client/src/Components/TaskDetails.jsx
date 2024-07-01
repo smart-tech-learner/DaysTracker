@@ -468,7 +468,9 @@ const TaskDetails = () => {
           )}
         </div>
         <div className="item31">
-          <h5 className="card-title">{taskDetails.title}</h5>
+          <h5 className="card-title" style={{ color: "brown" }}>
+            {taskDetails.title}
+          </h5>
           <h6 className="card-subtitle mb-2 text-body-secondary">
             {taskDetails.timePeriod}
           </h6>

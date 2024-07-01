@@ -52,7 +52,7 @@ const AIChatBot = () => {
       ) : (
         responseList.map((details) => {
           return (
-            <div>
+            <div key={details.id}>
               <div
                 className="input-group mb-4"
                 style={

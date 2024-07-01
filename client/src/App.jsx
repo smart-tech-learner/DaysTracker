@@ -13,6 +13,8 @@ import TaskDetails from "./Components/TaskDetails";
 import { loader as taskDetailsLoader } from "./Components/TaskDetails";
 import { loader as tasksLayoutLoader } from "./Components/TasksLayout";
 import ResetPassword from "./Pages/ResetPassword";
+import "./css/App.css";
+import { useState } from "react";
 
 const router = createBrowserRouter([
   {
@@ -63,11 +65,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

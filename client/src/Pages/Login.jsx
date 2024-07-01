@@ -34,7 +34,10 @@ const Login = () => {
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col col-xl-10">
-              <div className="card" style={{ borderRadius: "1rem" }}>
+              <div
+                className="card"
+                style={{ borderRadius: "1rem", padding: "25px" }}
+              >
                 <div className="row g-0">
                   <div className="col-md-6 col-lg-5 d-none d-md-block">
                     <img
@@ -68,13 +71,13 @@ const Login = () => {
 
                         <div data-mdb-input-init className="form-outline mb-4">
                           <FormLabel name="password" labelText="Password" />
-                          <div class="input-group">
+                          <div className="input-group">
                             <input
                               type={showPassword ? "text" : "password"}
                               name="password"
                               className="form-control"
                             />
-                            <div class="input-group-append">
+                            <div className="input-group-append">
                               <img
                                 style={{ border: "1px solid darkgrey" }}
                                 src={show_password_icon}
