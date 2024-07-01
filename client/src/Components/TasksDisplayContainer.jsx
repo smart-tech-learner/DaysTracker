@@ -1,5 +1,5 @@
 import React from "react";
-import no_tasks_image from "/images/no_tasks.jpg";
+import no_tasks_image from "/images/no_tasks.svg";
 import TaskDisplayCard from "./TaskDisplayCard";
 
 const TasksDisplayContainer = (props) => {

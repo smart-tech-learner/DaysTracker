@@ -11,7 +11,7 @@ const ChangePasswordModal = (props) => {
     <Modal
       show={props.show}
       onHide={handleClose}
-      size="md"
+      size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
